@@ -5,10 +5,15 @@
 
 1. Install Ansible dependencies:
 ```bash
-make setup
+make install
 ```
 
 2. Run Ansible playbook
+```bash
+make setup
+```
+
+3. Run application
 ```bash
 make run
 ```

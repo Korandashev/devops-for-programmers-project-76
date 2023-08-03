@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+
+  db:
+    image: postgres:14.8
+    restart: always
+    expose:
+      - "${DATABASE_PORT}"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    command: -p "${DATABASE_PORT}"
+
+  redmine:
+    image: redmine
+    restart: always
+    expose:
+      - "${REDMINE_PORT}"
+    ports:
+      - "${REDMINE_PORT}:3000"
+    environment:
+      - REDMINE_DB_POSTGRES=${DATABASE_HOST}
+      - REDMINE_DB_DATABASE=${DATABASE_NAME}
+      - REDMINE_DB_USERNAME=${DATABASE_USERNAME}
+      - REDMINE_DB_PASSWORD=${DATABASE_PASSWORD}
+      - REDMINE_DB_PORT=${DATABASE_PORT}
+      - REDMINE_SECRET_KEY_BASE=${REDMINE_SECRET_KEY_BASE}
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
