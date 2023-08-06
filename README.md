@@ -12,8 +12,3 @@ make install
 ```bash
 make setup
 ```
-
-3. Run application
-```bash
-make run
-```

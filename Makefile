@@ -1,6 +1,5 @@
 install: ansible-install-requirements
 setup: ansible-run-playbook
-run: docker-compose
 
 
 ping:
@@ -10,7 +9,7 @@ ansible-install-requirements:
 	ansible-galaxy install -r requirements.yml
 
 ansible-run-playbook:
-	ansible-playbook playbook.yml -i inventory.ini
+	ansible-playbook playbook.yml -i inventory.ini --vault-password-file ./.ansible-password
 
-docker-compose:
-	docker compose -f docker-compose.yml up --abort-on-container-exit
+ansible-edit-env:
+	ansible-vault edit group_vars/all/vault.yml --vault-password-file ./.ansible-password
