@@ -7,9 +7,13 @@ Demo app: [ops.net.ru](https://ops.net.ru/)
 
 ### Setup
 
-1. Change the ansible variables in the `group_vars/all/vailt.yml` file:
+1. Change the ansible variables in the `group_vars/all/vailt.yml` and `group_vars/webservers/vailt.yml` file:
 ```yml
+# group_vars/all/vailt.yml`
+
 hosts_remote_user: <user>
+app_port: <port>
+
 redmine_db_host: <database_host>
 redmine_db_port: <database_port>
 redmine_db_name: <database_name>
@@ -18,19 +22,26 @@ redmine_db_password: <database_password>
 redmine_secret_key_base: <secret_key>
 ```
 
-2. Rename the `.ansible-password.example` file to `.ansible-password` and create a password
+```yml
+# group_vars/webservers/vailt.yml
 
-3. Encrypt the file `group_vars/all/vailt.yml` with the password from `.ansible-password` file:
-```bash
-make ansible-encrypt-env
+dd_api_key: <datadog_api_key>
+host_url: <site_url>
 ```
 
-4. Install Ansible dependencies:
+2. Rename the `.ansible-password.example` file to `.ansible-password` and create a password
+
+3. Encrypt `group_vars` files with the password from `.ansible-password` file (arg `group`: `all`/`webservers`):
+```bash
+make ansible-encrypt-env group=all
+```
+
+1. Install Ansible dependencies:
 ```bash
 make install
 ```
 
-5. Run Ansible playbook
+1. Run Ansible playbook
 ```bash
 make setup
 ```
