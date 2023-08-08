@@ -36,12 +36,12 @@ host_url: <site_url>
 make ansible-encrypt-env group=all
 ```
 
-1. Install Ansible dependencies:
+4. Install Ansible dependencies:
 ```bash
 make install
 ```
 
-1. Run Ansible playbook
+5. Run Ansible playbook
 ```bash
 make setup
 ```
