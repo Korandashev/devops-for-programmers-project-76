@@ -1,0 +1,13 @@
+datadog_api_key: "{{ dd_api_key }}"
+datadog_site: us5.datadoghq.com
+http_check:
+    init_config:
+    datadog_config:
+      cmd_port: 5011
+    datadog_checks:
+      http_check:
+        init_config:
+        instances:
+          - name: Site available
+            url: "{{ host_url }}"
+            tls_verify: true
