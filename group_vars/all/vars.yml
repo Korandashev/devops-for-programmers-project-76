@@ -1,3 +1,6 @@
+hosts_remote_user: admin
+host_url: https://ops.net.ru
+app_port: 80
 pip_install_packages: 
   - name: docker 
     version: 6.1.3
